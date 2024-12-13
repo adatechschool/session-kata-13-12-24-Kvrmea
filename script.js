@@ -1,12 +1,12 @@
 // Liste des couleurs possibles
-const colors = ["rouge", "bleu", "vert", "violet"];
+const colors = ["rouge", "bleu", "vert", "violet", "jaune", "orange", "noir", "blanc"];
 
 // Combinaison à deviner
-const secret = ["rouge", "violet"];
+const secret = ["rouge", "bleu", "vert", "violet"];
 
 // Fonction qui vérifie si la proposition est valide
 function validProposition(proposition) {
-    if (proposition.length != secret.length) {
+    if (proposition.length !== secret.length) {
         return false;
     }
     for (let color of proposition) {
@@ -17,46 +17,50 @@ function validProposition(proposition) {
     return true;
 }
 
-// Fonction qui vérifie la combinaison correct
-function correctValid (proposition) {
+// Fonction qui vérifie si la combinaison est correcte
+function correctValid(proposition) {
     for (let i = 0; i < secret.length; i++) {
-        if (proposition[i] != secret[i]) {
+        if (proposition[i] !== secret[i]) {
             return false;
         }
     }
-    return false;
+    return true;
 }
 
-// Function qui gère la partie
+// Fonction qui gère la partie
 function mastermind() {
-    let attemps = 12;
+    let attempts = 12;
     let win = false;
 
     console.log("Bienvenue dans le jeu Mastermind !");
-    console.log(`Trouvez la bonne combinaison composée de ${combinaisonSecrete.length} couleurs !`);
-    console.log(`Couleurs possibles : ${couleurs.join(", ")}`);
+    console.log(`Trouvez la bonne combinaison composée de ${secret.length} couleurs !`);
+    console.log(`Couleurs possibles : ${colors.join(", ")}`);
 
-    while (attemps > 0 && !win) {
-        if (!correctValid(proposition)) {
-            console.log("Proposition invalide. Veuillez choisir parmi les couleurs possible.");
+    while (attempts > 0 && !win) {
+        const proposition = askProposition();
+
+        if (!validProposition(proposition)) {
+            console.log("Proposition invalide. Veuillez choisir parmi les couleurs possibles.");
             continue;
         }
+
         if (correctValid(proposition)) {
-            console.log("Nice ça ! Tu a trouvé la bonne combinaison !");
+            console.log("Félicitations ! Vous avez trouvé la bonne combinaison !");
             win = true;
         } else {
-            attemps --;
-            console.log(`PAS BON ! Il te reste ${attemps} essai(s).`);
+            attempts--;
+            console.log(`Incorrect ! Il vous reste ${attempts} essai(s).`);
         }
     }
+
     if (!win) {
-        console.log("Dommage, tu a épuisé tous tes essaies. La combinaison secrète était :", secret.join(","));
+        console.log("Dommage, vous avez épuisé tous vos essais. La combinaison secrète était :", secret.join(", "));
     }
 }
 
 // Fonction pour demander une proposition
 function askProposition() {
-    const text = prompt("Entre ta combinaision (séparée par des virgule) :");
+    const text = prompt("Entrez votre combinaison (séparée par des virgules) :");
     return text.split(",").map(color => color.trim().toLowerCase());
 }
 

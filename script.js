@@ -1,8 +1,18 @@
 // Liste des couleurs possibles
 const colors = ["rouge", "bleu", "vert", "violet", "jaune", "orange", "noir", "blanc"];
 
-// Combinaison à deviner
-const secret = ["rouge", "rouge", "vert", "violet"];
+// Fonction pour générer une combinaison aléatoire
+function generateSecretCode(length) {
+    const secret = [];
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        secret.push(colors[randomIndex]);
+    }
+    return secret;
+}
+
+// Génère la combinaision à deviner
+const secretCode = generateSecretCode(4);
 
 // Fonction qui vérifie si la proposition est valide
 function validProposition(proposition) {

@@ -2,7 +2,7 @@
 const colors = ["rouge", "bleu", "vert", "violet", "jaune", "orange", "noir", "blanc"];
 
 // Combinaison à deviner
-const secret = ["rouge", "bleu", "vert", "violet"];
+const secret = ["rouge", "rouge", "vert", "violet"];
 
 // Fonction qui vérifie si la proposition est valide
 function validProposition(proposition) {

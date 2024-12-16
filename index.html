@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+    <title>Mastermind</title>
 </head>
 <body>
-    
+    <h1>Mastermind</h1>
+    <div id="gameContainer">
+        <div class="game-board" id="gameBoard"></div>
+        <div class="color-options" id="colorOptions"></div>
+        <div id="messageBox"></div>
+        <button class="submit-btn" id="submitBtn" disabled>Soumettre</button>
+        <button class="reset-btn" id="resetBtn">Nouvelle Partie</button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
